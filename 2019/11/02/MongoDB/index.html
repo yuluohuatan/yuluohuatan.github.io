@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>MongoDB | Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="MongoDB | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="MongoDB[TOC] 创建用户使用客户端连接mongodb  切换到admin库use admin  查看admin中的用户db.system.users.find()  以使用 db.createUser({用户信息})函数创建用户。  12345678db.createUser(&amp;#123;      user: &quot;&amp;lt;name&amp;gt;&quot;,     pwd: &quot;&amp;lt;cleartex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;02&#x2F;MongoDB&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="MongoDB[TOC] 创建用户使用客户端连接mongodb  切换到admin库use admin  查看admin中的用户db.system.users.find()  以使用 db.createUser({用户信息})函数创建用户。  12345678db.createUser(&amp;#123;      user: &quot;&amp;lt;name&amp;gt;&quot;,     pwd: &quot;&amp;lt;cleartex">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="c:%5CUsers%5Cad%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191102171850805.png">
+<meta property="og:image" content="c:%5CUsers%5Cad%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191102174033636.png">
+<meta property="og:image" content="c:%5CUsers%5Cad%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191102174313637.png">
+<meta property="og:updated_time" content="2019-11-02T12:24:53.981Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:%5CUsers%5Cad%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191102171850805.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>John Doe</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="rss" href="/atom.xml" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="github" href="https://github.com/yelog" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="facebook" href="https://www.facebook.com/faker.tops" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-facebook"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+    
+        
+        <a title="instagram" href="https://www.facebook.com/faker.tops" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-instagram"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="reddit" href="https://www.reddit.com/user/yelog/" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-reddit"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="weibo" href="http://weibo.com/u/2307534817" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-weibo"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="jianshu" href="https://www.jianshu.com/u/ff56736de7cf" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-jianshu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="zhihu" href="https://www.zhihu.com/people/jaytp/activities" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-zhihu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="oschina" href="https://my.oschina.net/yelog" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-oschina"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="email" href="mailto:jaytp@qq.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=872336115&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="kugou" href="https://www.kugou.com/" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-kugou"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="neteasemusic" href="https://music.163.com/#/user/home?id=88151013" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-neteasemusic"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(1)</small></div></li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="1">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/2019/11/02/MongoDB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MongoDB">MongoDB</span>
+            <span class="post-date" title="2019-11-02 20:24:53">2019/11/02</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-MongoDB" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">MongoDB</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-11-02 20:24:53'>2019-11-02 20:24</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MongoDB"><span class="toc-text">MongoDB</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建用户"><span class="toc-text">创建用户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新用户"><span class="toc-text">更新用户</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#更新用户角色"><span class="toc-text">更新用户角色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新用户密码"><span class="toc-text">更新用户密码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除用户"><span class="toc-text">删除用户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库操作"><span class="toc-text">数据库操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建数据库"><span class="toc-text">创建数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看所有数据库"><span class="toc-text">查看所有数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除数据库"><span class="toc-text">删除数据库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集合操作"><span class="toc-text">集合操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建集合"><span class="toc-text">创建集合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用默认集合"><span class="toc-text">使用默认集合</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查询文档"><span class="toc-text">查询文档</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-find-函数"><span class="toc-text">1. find()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-findOne-函数"><span class="toc-text">2. findOne()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-模糊查询"><span class="toc-text">3.  模糊查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-条件查询"><span class="toc-text">4. 条件查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#gt"><span class="toc-text">$gt</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MongoDB-索引"><span class="toc-text">MongoDB 索引</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建索引"><span class="toc-text">创建索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看索引"><span class="toc-text">查看索引</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查看集合索引"><span class="toc-text">查看集合索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查看索引键"><span class="toc-text">查看索引键</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查看索引大小"><span class="toc-text">查看索引大小</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改索引"><span class="toc-text">修改索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除索引"><span class="toc-text">删除索引</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#删除集合中的指定索引"><span class="toc-text">删除集合中的指定索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除集合中的全部索引"><span class="toc-text">删除集合中的全部索引</span></a></li></ol></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h1><p>[TOC]</p>
+<h2 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h2><p>使用客户端连接mongodb</p>
+<ol>
+<li><p>切换到admin库<br><code>use admin</code></p>
+</li>
+<li><p>查看admin中的用户<br><code>db.system.users.find()</code></p>
+</li>
+<li><p>以使用 db.createUser({用户信息})函数创建用户。 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">db.createUser(&#123;      </span><br><span class="line">user: <span class="string">"&lt;name&gt;"</span>,     </span><br><span class="line">pwd: <span class="string">"&lt;cleartext password&gt;"</span>,     </span><br><span class="line">customData: &#123; &lt;any information&gt; &#125;,     </span><br><span class="line">roles: [         </span><br><span class="line">	&#123; <span class="attr">role</span>: <span class="string">"&lt;role&gt;"</span>, <span class="attr">db</span>: <span class="string">"&lt;database&gt;"</span> &#125; | <span class="string">"&lt;role&gt;"</span>,         ...     </span><br><span class="line">	] </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>1）user:新建用户名。</p>
+<p>2）pwd:新建用户密码。</p>
+<p>3）customData:存放一些用户相关的自定义数据，该属性也可忽略。 </p>
+<p>4）roles:数组类型，配置用户的权限。</p>
+</li>
+<li><p>重启mongodb</p>
+<p><code>db.shutdownServer()</code></p>
+</li>
+<li><p>使用用户登录</p>
+<p><code>use admin</code></p>
+<p><code>db.auth(&quot;user&quot;,&quot;pwd&quot;)</code></p>
+</li>
+</ol>
+<h2 id="更新用户"><a href="#更新用户" class="headerlink" title="更新用户"></a>更新用户</h2><h3 id="更新用户角色"><a href="#更新用户角色" class="headerlink" title="更新用户角色"></a>更新用户角色</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.updateUser(&quot;用户名&quot;, &#123;&quot;roles&quot;:[&#123;&quot;role&quot;:&quot;角色名称&quot;&#125;,&#123;&quot;更新项 2&quot;:&quot;更新内容&quot;&#125;]&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>如果我们需要对已存在的用户的角色做修改，那么我们可以使用 db.updateUser()函数来 更新用户角色。注意，该函数需要当前用户具有 userAdminAnyDatabase 或者更高的权限。 </p>
+<p><strong>更新机制为覆盖更新，而不是添加更新，如果更新时没有带上原来的角色，会将原来已经给定的角色删除。</strong></p>
+<h3 id="更新用户密码"><a href="#更新用户密码" class="headerlink" title="更新用户密码"></a>更新用户密码</h3><p>更新用户密码有两种方式：</p>
+<p>1）使用 db.updateUser()函数更新密码。 </p>
+<p>2）使用 db.changeUserPassword()函数更新密码</p>
+<h2 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h2><p>通过 db.dropUser()函数可删除指定用户。删除成功后会返回 true。在删除用户时需要切 换到创建用户时所指定的数据库中才可以删除。注意：需要使用具有 userAdminAnyDatabse 角色管理员用户才可以删除其他用户。 </p>
+<p><code>db.dropUser(&quot;user&quot;)</code></p>
+<h2 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h2><h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><p>在 MongoDB 中创建数据库的命令使用的是 use 命令。该命令有两层含义： </p>
+<p>1）切换到指定数据库。 </p>
+<p>2）如果切换的数据库不存在，则创建该数据库。 </p>
+<h3 id="查看所有数据库"><a href="#查看所有数据库" class="headerlink" title="查看所有数据库"></a>查看所有数据库</h3><p>我们可以通过 <code>show dbs</code> 命令查看当前 MongoDB 中的所有数据库。 </p>
+<p>如果开启了用户认证，则需要先登录方可查看到结果，否则不显示任何信息。如果使用的是具备数据库管理员角色的用户，那么则可以看到 MongoDB 中的所有数据库，如果使用 的普通用户登录的那么只能查询到该用户所拥有的数据库。 </p>
+<h3 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h3><p>在 MongoDB 中使用 db.dropDatabase()函数来删除数据库。在删除数据库之前，需要使用具备dbAdminAnyDatabase 角色的管理员用户登录，然后切换到需要删除的数据库，执行 db.dropDatabase()函数即可。删除成功后会返回一个{ “ok” : 1 }的 JSON 字符串。</p>
+<h2 id="集合操作"><a href="#集合操作" class="headerlink" title="集合操作"></a>集合操作</h2><p>MongoDB 中的集合是一组文档的集，相当于关系型数据库中的表。 </p>
+<h3 id="创建集合"><a href="#创建集合" class="headerlink" title="创建集合"></a>创建集合</h3><p>MongoDB 使用 db.createCollection()函数来创建集合。 语法格式：db.createCollection(name, options)。name: 要创建的集合名称。 options: 可选参数, 指定有关内存大小及索引的选项。 </p>
+<p>options 可以是如下参数。 </p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>capped</td>
+<td>布尔</td>
+<td>（可选）如果为 true，则创建固定集合。固定集合是指 有着固定大小的集合，当达到最大值时，它会自动覆盖最早 的文档。 当该值为 true 时，必须指定 size 参数。</td>
+</tr>
+<tr>
+<td>autoindexid</td>
+<td>布尔</td>
+<td>（可选）如为 true，自动在 _id 字段创建索引。默认为 false。</td>
+</tr>
+<tr>
+<td>size</td>
+<td>数值</td>
+<td>（可选）为固定集合指定一个最大值（以字节计）。 如果 capped 为 true，也需要指定该字段。</td>
+</tr>
+<tr>
+<td>max</td>
+<td>数值</td>
+<td>（可选）指定固定集合中包含文档的最大数量。</td>
+</tr>
+</tbody></table>
+<p>在插入文档时，MongoDB 首先检查固定集合的 size 字段，然后检查 max 字段。 </p>
+<h3 id="使用默认集合"><a href="#使用默认集合" class="headerlink" title="使用默认集合"></a>使用默认集合</h3><h2 id="查询文档"><a href="#查询文档" class="headerlink" title="查询文档"></a>查询文档</h2><h3 id="1-find-函数"><a href="#1-find-函数" class="headerlink" title="1. find()函数"></a>1. find()函数</h3><p>在 MongoDB 中可以使用 find()函数查询文档。 </p>
+<p>语法格式为：<code>find({查询条件(可选)},{指定投影的键(可选)})</code></p>
+<p>如果未给定参数则表示查询所有数据。 </p>
+<p>pretty()函数可以使用格式化的方式来显示所有文档。 </p>
+<h3 id="2-findOne-函数"><a href="#2-findOne-函数" class="headerlink" title="2. findOne()函数"></a>2. findOne()函数</h3><p>findOne()函数只返回满足条件的第一条数据。如果未做投影操作该方法则自带格式化功能。 </p>
+<p>语法格式：findOne({查询条件(可选)},{投影操作(可选)}) </p>
+<h3 id="3-模糊查询"><a href="#3-模糊查询" class="headerlink" title="3.  模糊查询"></a>3.  模糊查询</h3><p>在 MongoDB 中可以通过//与^$实现模糊查询，注意使用模糊查询时查询条件不能放到双引号或单引号中。 </p>
+<h3 id="4-条件查询"><a href="#4-条件查询" class="headerlink" title="4. 条件查询"></a>4. 条件查询</h3><p>条件操作符用于比较两个表达式并从 mongoDB 集合中获取数据。 </p>
+<p>语法格式：find({键:{操作符:条件}})或者 findOne({键:{操作符:条件}}) </p>
+<h4 id="gt"><a href="#gt" class="headerlink" title="$gt"></a>$gt</h4><p>*<em>(&gt;) 大于操作符 *</em></p>
+<p>我们可以使用$gt 操作做大于的条件判断。该操作符可以数字或日期进行判断。 </p>
+<p>查询 size 大于 300 的文档 </p>
+<p><img src="C:%5CUsers%5Cad%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191102171850805.png" alt="image-20191102171850805"></p>
+<h2 id="MongoDB-索引"><a href="#MongoDB-索引" class="headerlink" title="MongoDB 索引"></a>MongoDB 索引</h2><h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><p>在 MongoDB 中会自动为文档中的_Id(文档的主键)键创建索引，与关系型数据的主键索引类似。 </p>
+<p>我们可以使用 createIndex()函数来为其他的键创建索引。在创建索引时需要指定排序规则。1按照升序规则创建索引，-1 按照降序规则创建索引。 </p>
+<p>语法格式：db.COLLECTION_NAME.createIndex({创建索引的键:排序规则,……},{创建索 引的参数(可选参数)}) </p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>为 test集合中的 title 键创建索引，并让创建工作在后台运行。 </p>
+<p><img src="C:%5CUsers%5Cad%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191102174033636.png" alt="image-20191102174033636"></p>
+<h3 id="查看索引"><a href="#查看索引" class="headerlink" title="查看索引"></a>查看索引</h3><h4 id="查看集合索引"><a href="#查看集合索引" class="headerlink" title="查看集合索引"></a>查看集合索引</h4><p>我们可以通过 getIndexes()或者 getIndexSpecs()函数查看集合中的所有索引信息。 </p>
+<p>语法格式：db.COLLECTION_NAME.getIndexse()</p>
+<p>语法格式：db.COLLECTION_NAME.getIndexSpecs() </p>
+<p><img src="C:%5CUsers%5Cad%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191102174313637.png" alt="image-20191102174313637"></p>
+<h4 id="查看索引键"><a href="#查看索引键" class="headerlink" title="查看索引键"></a>查看索引键</h4><p>我们可以通过使用 getIndexKeys()函数查看集合的索引键。 </p>
+<p>语法格式：db.COLLECTION_NAME.getIndexKeys();</p>
+<h4 id="查看索引大小"><a href="#查看索引大小" class="headerlink" title="查看索引大小"></a>查看索引大小</h4><p>可以通过 totalIndexSize()函数来查看当前集合中索引的大小，单位为字节</p>
+<p>语法格式：<code>语法格式：db.COLLECTION_NAME.totalIndexSize([detail](可选参数))</code></p>
+<p>参数解释：detail 可选参数，传入除 0 或 false 外的任意数据，那么会显示该集合中每个 索引的大小及集合中索引的总大小。如果传入 0 或 false 则只显示该集合中所有索引的总大 小。默认值为 false。 </p>
+<h3 id="修改索引"><a href="#修改索引" class="headerlink" title="修改索引"></a>修改索引</h3><p>MongoDB 没有单独的修改索引函数，如果要修改某个索引，需要先删除旧的索引，再创建新的索引。 </p>
+<h3 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h3><h4 id="删除集合中的指定索引"><a href="#删除集合中的指定索引" class="headerlink" title="删除集合中的指定索引"></a>删除集合中的指定索引</h4><p>我们可以通过 dropIndex()函数来删除指定索引。 </p>
+<p>语法格式：<code>db.COLLECTION_NAME.dropIndex(&quot;索引名称&quot;)。</code></p>
+<h4 id="删除集合中的全部索引"><a href="#删除集合中的全部索引" class="headerlink" title="删除集合中的全部索引"></a>删除集合中的全部索引</h4><p>我们可以使用 dropIndexes()函数删除集合中的全部索引，_id 键的索引除外。 </p>
+<p>语法格式：<code>db.COLLECTION_NAME.dropIndexes()</code></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" target="_blank" rel="noopener" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>MongoDB</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" target="_blank" rel="noopener" title="John Doe">John Doe</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-11-02, 20:24:53</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-02, 20:24:53</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/02/MongoDB/" title="MongoDB">http://yoursite.com/2019/11/02/MongoDB/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2016-2019 Yelog</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)" target="_blank" rel="noopener"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" target="_blank" rel="noopener" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': [],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

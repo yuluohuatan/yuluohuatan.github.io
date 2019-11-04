@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="categories">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;categories&#x2F;index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;yuluohuatan.github.io&#x2F;categories&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="zh">
 <meta property="og:updated_time" content="2019-11-03T00:45:30.943Z">
@@ -132,19 +132,19 @@
     <nav id="title-list-nav">
         
         <a  class="数据库 "
-           href="/2019/11/03/MongoDB/"
-           data-tag="MongoDB"
-           data-author="" >
-            <span class="post-title" title="MongoDB">MongoDB</span>
-            <span class="post-date" title="2019-11-03 08:44:10">2019/11/03</span>
-        </a>
-        
-        <a  class="数据库 "
            href="/2019/11/04/Java%20%E8%AE%BF%E9%97%AE%20MongoDB/"
            data-tag="MongoDB"
            data-author="" >
             <span class="post-title" title="Java访问MongoDB">Java访问MongoDB</span>
             <span class="post-date" title="2019-11-04 17:12:22">2019/11/04</span>
+        </a>
+        
+        <a  class="数据库 "
+           href="/2019/11/03/MongoDB/"
+           data-tag="MongoDB"
+           data-author="" >
+            <span class="post-title" title="MongoDB">MongoDB</span>
+            <span class="post-date" title="2019-11-03 08:44:10">2019/11/03</span>
         </a>
         
     </nav>
@@ -183,7 +183,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-04 19:41:04'>2019-11-04 17:12</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-04 21:09:47'>2019-11-04 17:12</time>
         
     </div>
     <div class="article-meta">
@@ -205,7 +205,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-text">Java访问MongoDB </span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">连接 MongoDB 数据库 </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">1. 创建工程 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">2.创建 MongoDB 连接 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">3. 创建 MongoDB 的认证连接 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">4. 创建 MongoDB 的池连 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">5. 创建 MongoDB 的认证池连 </span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-text">Java访问MongoDB</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">连接 MongoDB 数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">1. 创建工程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">2.创建 MongoDB 连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">3. 创建 MongoDB 的认证连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">4. 创建 MongoDB 的池连</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">5. 创建 MongoDB 的认证池连</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -221,46 +221,199 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <div class="toc">
+        <h1><span id="java访问mongodb">Java访问MongoDB</span></h1><p><div class='inner-toc'><h2>目录</h2><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-text">Java访问MongoDB</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">连接 MongoDB 数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">1. 创建工程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">2.创建 MongoDB 连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">3. 创建 MongoDB 的认证连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">4. 创建 MongoDB 的池连</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">5. 创建 MongoDB 的认证池连</span></a></li></ol></li></ol></li></ol></div></p>
+<h2><span id="连接-mongodb-数据库">连接 MongoDB 数据库</span></h2><h3><span id="1-创建工程">1. 创建工程</span></h3><p>在POM文件中添加MongoDB驱动包坐标</p>
+<pre><code class="xml">    &lt;dependencies&gt;
+        &lt;!--添加 MongoDB 驱动坐标 --&gt;
+        &lt;!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java -driver --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.mongodb&lt;/groupId&gt;
+            &lt;artifactId&gt;mongo-java-driver&lt;/artifactId&gt;
+            &lt;version&gt;3.8.2&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;</code></pre>
+<h3><span id="2创建-mongodb-连接">2.创建 MongoDB 连接</span></h3><p>封装 MongoDBUtil </p>
+<pre><code class="java">package com.trf.mongodb;
 
-<!-- toc -->
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 
-<ul>
-<li><a href="#java-fang-wen-mongodb">Java访问MongoDB</a><ul>
-<li><a href="#lian-jie-mongodb-shu-ju-ku">连接 MongoDB 数据库</a><ul>
-<li><a href="#1-chuang-jian-gong-cheng">1. 创建工程</a></li>
-<li><a href="#2-chuang-jian-mongodb-lian-jie">2.创建 MongoDB 连接</a></li>
-<li><a href="#3-chuang-jian-mongodb-de-ren-zheng-lian-jie">3. 创建 MongoDB 的认证连接</a></li>
-<li><a href="#4-chuang-jian-mongodb-de-chi-lian">4. 创建 MongoDB 的池连</a></li>
-<li><a href="#5-chuang-jian-mongodb-de-ren-zheng-chi-lian">5. 创建 MongoDB 的认证池连</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
+/**
+ * MongoDB工具类
+ * @author ad
+ * @date 2019-11-04 17:26
+ */
+public class MongDBUtil {
+    private static MongoClient client = null;
+    static {
+        if (client == null) {
+            client = new MongoClient(&quot;192.168.41.185&quot;, 27017);
+        }
+    }
 
-</div>
+    /**
+     * 获取MongoDB数据库
+     * @param dbName MongoDB数据库名
+     * @return MongoDB数据库对象
+     */
+    public static MongoDatabase getDatabase(String dbName){
+        return client.getDatabase(dbName);
+    }
 
-<h1><span id="java-fang-wen-mongodb">Java访问MongoDB</span><a href="#java-fang-wen-mongodb" class="header-anchor"> </a></h1><h2><span id="lian-jie-mongodb-shu-ju-ku">连接 MongoDB 数据库</span><a href="#lian-jie-mongodb-shu-ju-ku" class="header-anchor"> </a></h2><h3><span id="1-chuang-jian-gong-cheng">1. 创建工程</span><a href="#1-chuang-jian-gong-cheng" class="header-anchor"> </a></h3><p>在POM文件中添加MongoDB驱动包坐标</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--添加 MongoDB 驱动坐标 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java -driver --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mongodb<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mongo-java-driver<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+    public static MongoCollection getCollection(String dbName, String collectionName){
+        MongoDatabase database = getDatabase(dbName);
+        return database.getCollection(collectionName);
+    }
 
+}</code></pre>
+<h3><span id="3-创建-mongodb-的认证连接">3. 创建 MongoDB 的认证连接</span></h3><p>封装 MongoDBAuthUtil </p>
+<pre><code class="java">package com.trf.mongodb;
 
+import com.mongodb.MongoClient;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 
-<h3><span id="2-chuang-jian-mongodb-lian-jie">2.创建 MongoDB 连接</span><a href="#2-chuang-jian-mongodb-lian-jie" class="header-anchor"> </a></h3><p>封装 MongoDBUtil </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.trf.mongodb;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.mongodb.MongoClient;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.MongoCollection;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.MongoDatabase;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * MongoDB工具类</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> ad</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019-11-04 17:26</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MongDBUtil</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> MongoClient client = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (client == <span class="keyword">null</span>) &#123;</span><br><span class="line">            client = <span class="keyword">new</span> MongoClient(<span class="string">"192.168.41.185"</span>, <span class="number">27017</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取MongoDB数据库</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> dbName MongoDB数据库名</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> MongoDB数据库对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> MongoDatabase <span class="title">getDatabase</span><span class="params">(String dbName)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> client.getDatabase(dbName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> MongoCollection <span class="title">getCollection</span><span class="params">(String dbName, String collectionName)</span></span>&#123;</span><br><span class="line">        MongoDatabase database = getDatabase(dbName);</span><br><span class="line">        <span class="keyword">return</span> database.getCollection(collectionName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+import java.util.Arrays;
 
+/**
+ * MongoDB工具类，使用用户认证
+ * @author ad
+ * @date 2019-11-04 17:42
+ */
+public class MongoDBAuthUtil {
+    private static MongoClient client = null;
+    static {
+        if (client == null) {
+            //创建用户认证信息
+            MongoCredential credential = MongoCredential.createCredential(&quot;dev&quot;, &quot;dev&quot;, &quot;dev&quot;.toCharArray());
+            //封装MongoDB的地址端口对象
+            ServerAddress address = new ServerAddress(&quot;192.168.41.185&quot;, 27017);
+            client = new MongoClient(address, Arrays.asList(credential));
+        }
+    }
+    /**
+     * 获取MongoDB数据库
+     * @param dbName MongoDB数据库名
+     * @return MongoDB数据库对象
+     */
+    public static MongoDatabase getDatabase(String dbName){
+        return client.getDatabase(dbName);
+    }
 
+    /**
+     * 获取MongoDB集合
+     * @param dbName MongoDB数据库名
+     * @param collectionName MongoDB集合名
+     * @return MongoDB集合对象
+     */
+    public static MongoCollection getCollection(String dbName, String collectionName){
+        MongoDatabase database = getDatabase(dbName);
+        return database.getCollection(collectionName);
+    }
+}
+</code></pre>
+<h3><span id="4-创建-mongodb-的池连">4. 创建 MongoDB 的池连</span></h3><p>封装 MongoDBPoolUtil </p>
+<pre><code class="java">package com.trf.mongodb;
 
-<h3><span id="3-chuang-jian-mongodb-de-ren-zheng-lian-jie">3. 创建 MongoDB 的认证连接</span><a href="#3-chuang-jian-mongodb-de-ren-zheng-lian-jie" class="header-anchor"> </a></h3><p>封装 MongoDBAuthUtil </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.trf.mongodb;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.mongodb.MongoClient;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.MongoCredential;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.ServerAddress;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.MongoCollection;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.MongoDatabase;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * MongoDB工具类，使用用户认证</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> ad</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019-11-04 17:42</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MongoDBAuthUtil</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> MongoClient client = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (client == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">//创建用户认证信息</span></span><br><span class="line">            MongoCredential credential = MongoCredential.createCredential(<span class="string">"dev"</span>, <span class="string">"dev"</span>, <span class="string">"dev"</span>.toCharArray());</span><br><span class="line">            <span class="comment">//封装MongoDB的地址端口对象</span></span><br><span class="line">            ServerAddress address = <span class="keyword">new</span> ServerAddress(<span class="string">"192.168.41.185"</span>, <span class="number">27017</span>);</span><br><span class="line">            client = <span class="keyword">new</span> MongoClient(address, Arrays.asList(credential));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取MongoDB数据库</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> dbName MongoDB数据库名</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> MongoDB数据库对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> MongoDatabase <span class="title">getDatabase</span><span class="params">(String dbName)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> client.getDatabase(dbName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取MongoDB集合</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> dbName MongoDB数据库名</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> collectionName MongoDB集合名</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> MongoDB集合对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> MongoCollection <span class="title">getCollection</span><span class="params">(String dbName, String collectionName)</span></span>&#123;</span><br><span class="line">        MongoDatabase database = getDatabase(dbName);</span><br><span class="line">        <span class="keyword">return</span> database.getCollection(collectionName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientOptions;
+import com.mongodb.ServerAddress;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 
-<h3><span id="4-chuang-jian-mongodb-de-chi-lian">4. 创建 MongoDB 的池连</span><a href="#4-chuang-jian-mongodb-de-chi-lian" class="header-anchor"> </a></h3><p>封装 MongoDBPoolUtil </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.trf.mongodb;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.mongodb.MongoClient;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.MongoClientOptions;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.ServerAddress;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.MongoCollection;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.MongoDatabase;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * MongoDB工具类， 使用连接池</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> ad</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019-11-04 17:26</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MongDBPoolUtil</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> MongoClient client = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (client == <span class="keyword">null</span>) &#123;</span><br><span class="line">            MongoClientOptions.Builder builder = <span class="keyword">new</span> MongoClientOptions.Builder();</span><br><span class="line">            builder.connectionsPerHost(<span class="number">10</span>);<span class="comment">// 每个地址的最大连接数</span></span><br><span class="line">            builder.connectTimeout(<span class="number">5000</span>);<span class="comment">// 连接超时时间</span></span><br><span class="line">            builder.socketTimeout(<span class="number">5000</span>);<span class="comment">// 设置读写操作超时时间</span></span><br><span class="line">            ServerAddress address = <span class="keyword">new</span> ServerAddress(<span class="string">"192.168.41.185"</span>, <span class="number">27017</span>);</span><br><span class="line">            client = <span class="keyword">new</span> MongoClient(address, builder.build());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取MongoDB数据库</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> dbName MongoDB数据库名</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> MongoDB数据库对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> MongoDatabase <span class="title">getDatabase</span><span class="params">(String dbName)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> client.getDatabase(dbName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取MongoDB集合</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> dbName MongoDB数据库名</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> collectionName MongoDB集合名</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> MongoDB集合对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> MongoCollection <span class="title">getCollection</span><span class="params">(String dbName, String collectionName)</span></span>&#123;</span><br><span class="line">        MongoDatabase database = getDatabase(dbName);</span><br><span class="line">        <span class="keyword">return</span> database.getCollection(collectionName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+/**
+ * MongoDB工具类， 使用连接池
+ * @author ad
+ * @date 2019-11-04 17:26
+ */
+public class MongDBPoolUtil {
+    private static MongoClient client = null;
+    static {
+        if (client == null) {
+            MongoClientOptions.Builder builder = new MongoClientOptions.Builder();
+            builder.connectionsPerHost(10);// 每个地址的最大连接数
+            builder.connectTimeout(5000);// 连接超时时间
+            builder.socketTimeout(5000);// 设置读写操作超时时间
+            ServerAddress address = new ServerAddress(&quot;192.168.41.185&quot;, 27017);
+            client = new MongoClient(address, builder.build());
+        }
+    }
 
-<h3><span id="5-chuang-jian-mongodb-de-ren-zheng-chi-lian">5. 创建 MongoDB 的认证池连</span><a href="#5-chuang-jian-mongodb-de-ren-zheng-chi-lian" class="header-anchor"> </a></h3><p>封装 MongoDBAuthPoolUtil </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.trf.mongodb;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.mongodb.MongoClient;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.MongoClientOptions;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.MongoCredential;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.ServerAddress;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.MongoCollection;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.MongoDatabase;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * MongoDB工具类，使用用户认证，连接池</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> ad</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019-11-04 17:26</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MongDBAuthPoolUtil</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> MongoClient client = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (client == <span class="keyword">null</span>) &#123;</span><br><span class="line">            MongoClientOptions.Builder builder = <span class="keyword">new</span> MongoClientOptions.Builder();</span><br><span class="line">            builder.connectionsPerHost(<span class="number">10</span>);<span class="comment">// 每个地址的最大连接数</span></span><br><span class="line">            builder.connectTimeout(<span class="number">5000</span>);<span class="comment">// 连接超时时间</span></span><br><span class="line">            builder.socketTimeout(<span class="number">5000</span>);<span class="comment">// 设置读写操作超时时间</span></span><br><span class="line">            ServerAddress address = <span class="keyword">new</span> ServerAddress(<span class="string">"192.168.41.185"</span>, <span class="number">27017</span>);</span><br><span class="line">            <span class="comment">//创建用户认证信息</span></span><br><span class="line">            MongoCredential credential = MongoCredential.createCredential(<span class="string">"dev"</span>, <span class="string">"dev"</span>, <span class="string">"dev"</span>.toCharArray());</span><br><span class="line">            client = <span class="keyword">new</span> MongoClient(address, credential, builder.build());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取MongoDB数据库</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> dbName MongoDB数据库名</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> MongoDB数据库对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> MongoDatabase <span class="title">getDatabase</span><span class="params">(String dbName)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> client.getDatabase(dbName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取MongoDB集合</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> dbName MongoDB数据库名</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> collectionName MongoDB集合名</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> MongoDB集合对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> MongoCollection <span class="title">getCollection</span><span class="params">(String dbName, String collectionName)</span></span>&#123;</span><br><span class="line">        MongoDatabase database = getDatabase(dbName);</span><br><span class="line">        <span class="keyword">return</span> database.getCollection(collectionName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    /**
+     * 获取MongoDB数据库
+     * @param dbName MongoDB数据库名
+     * @return MongoDB数据库对象
+     */
+    public static MongoDatabase getDatabase(String dbName){
+        return client.getDatabase(dbName);
+    }
 
+    /**
+     * 获取MongoDB集合
+     * @param dbName MongoDB数据库名
+     * @param collectionName MongoDB集合名
+     * @return MongoDB集合对象
+     */
+    public static MongoCollection getCollection(String dbName, String collectionName){
+        MongoDatabase database = getDatabase(dbName);
+        return database.getCollection(collectionName);
+    }
+}</code></pre>
+<h3><span id="5-创建-mongodb-的认证池连">5. 创建 MongoDB 的认证池连</span></h3><p>封装 MongoDBAuthPoolUtil </p>
+<pre><code class="java">package com.trf.mongodb;
+
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientOptions;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+
+/**
+ * MongoDB工具类，使用用户认证，连接池
+ * @author ad
+ * @date 2019-11-04 17:26
+ */
+public class MongDBAuthPoolUtil {
+    private static MongoClient client = null;
+    static {
+        if (client == null) {
+            MongoClientOptions.Builder builder = new MongoClientOptions.Builder();
+            builder.connectionsPerHost(10);// 每个地址的最大连接数
+            builder.connectTimeout(5000);// 连接超时时间
+            builder.socketTimeout(5000);// 设置读写操作超时时间
+            ServerAddress address = new ServerAddress(&quot;192.168.41.185&quot;, 27017);
+            //创建用户认证信息
+            MongoCredential credential = MongoCredential.createCredential(&quot;dev&quot;, &quot;dev&quot;, &quot;dev&quot;.toCharArray());
+            client = new MongoClient(address, credential, builder.build());
+        }
+    }
+
+    /**
+     * 获取MongoDB数据库
+     * @param dbName MongoDB数据库名
+     * @return MongoDB数据库对象
+     */
+    public static MongoDatabase getDatabase(String dbName){
+        return client.getDatabase(dbName);
+    }
+
+    /**
+     * 获取MongoDB集合
+     * @param dbName MongoDB数据库名
+     * @param collectionName MongoDB集合名
+     * @return MongoDB集合对象
+     */
+    public static MongoCollection getCollection(String dbName, String collectionName){
+        MongoDatabase database = getDatabase(dbName);
+        return database.getCollection(collectionName);
+    }
+
+}
+</code></pre>
 
       
        
@@ -484,6 +637,16 @@
     /*文章列表背景图*/
     
 
+    
+    .post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
     
 </style>
 

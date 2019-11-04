@@ -6,19 +6,12 @@
   <meta name="keywords" content="">
   <meta name="description" content="Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="MongoDB[TOC] 创建用户使用客户端连接mongodb  切换到admin库use admin  查看admin中的用户db.system.users.find()  以使用 db.createUser({用户信息})函数创建用户。  12345678db.createUser(&amp;#123;      user: &quot;&amp;lt;name&amp;gt;&quot;,     pwd: &quot;&amp;lt;cleartex">
-<meta property="og:type" content="article">
-<meta property="og:title" content="MongoDB">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;02&#x2F;MongoDB&#x2F;index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="MongoDB[TOC] 创建用户使用客户端连接mongodb  切换到admin库use admin  查看admin中的用户db.system.users.find()  以使用 db.createUser({用户信息})函数创建用户。  12345678db.createUser(&amp;#123;      user: &quot;&amp;lt;name&amp;gt;&quot;,     pwd: &quot;&amp;lt;cleartex">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="c:%5CUsers%5Cad%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191102171850805.png">
-<meta property="og:image" content="c:%5CUsers%5Cad%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191102174033636.png">
-<meta property="og:image" content="c:%5CUsers%5Cad%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191102174313637.png">
-<meta property="og:updated_time" content="2019-11-02T12:24:53.981Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:%5CUsers%5Cad%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191102171850805.png">
 
 
 <link rel="icon" href="/img/aqua.gif">
@@ -83,6 +76,14 @@
 <ul>
     <li><div class="all active">全部文章<small>(1)</small></div></li>
     
+        
+            
+            <li><div data-rel="数据库">数据库<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
 </ul>
 <div class="left-bottom">
     <div class="menus">
@@ -91,7 +92,7 @@
     
     
     </div>
-    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+    <div></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="1">
 
@@ -127,6 +128,10 @@
     </form>
     <div class="tags-list">
     
+    <li class="article-tag-list-item">
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">MongoDB</a>
+    </li>
+    
     <div class="clearfix"></div>
 </div>
 
@@ -137,12 +142,12 @@
     
     <nav id="title-list-nav">
         
-        <a  class=""
-           href="/2019/11/02/MongoDB/"
-           data-tag=""
+        <a  class="数据库 "
+           href="/2019/11/03/MongoDB/"
+           data-tag="MongoDB"
            data-author="" >
             <span class="post-title" title="MongoDB">MongoDB</span>
-            <span class="post-date" title="2019-11-02 20:24:53">2019/11/02</span>
+            <span class="post-date" title="2019-11-03 08:44:10">2019/11/03</span>
         </a>
         
     </nav>
@@ -185,7 +190,7 @@
 
     </div>
     <div class="full-toc">
-        <button class="full"><span class="min "></span></button>
+        <button class="full"><span class="min mobile"></span></button>
 <button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
 <div class="post-toc"><span class="post-toc-title">目录</span>
     <div class="post-toc-content">
@@ -206,7 +211,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': [],
+            'data': ['#MongoDB',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');

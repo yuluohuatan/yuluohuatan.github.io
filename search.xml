@@ -3,7 +3,8 @@
   <entry>
     <title>MongoDB</title>
     <url>/2019/11/03/MongoDB/</url>
-    <content><![CDATA[<h2 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h2><p>使用客户端连接mongodb</p>
+    <content><![CDATA[<h1 id="MonggoDB"><a href="#MonggoDB" class="headerlink" title="MonggoDB"></a>MonggoDB</h1><p>[TOC]</p>
+<h2 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h2><p>使用客户端连接mongodb</p>
 <ol>
 <li><p>切换到admin库<br><code>use admin</code></p>
 </li>
@@ -86,7 +87,7 @@
 <p>我们可以使用$gt 操作做大于的条件判断。该操作符可以数字或日期进行判断。 </p>
 <p>查询 size 大于 300 的文档 </p>
 <p><img src="C:%5CUsers%5Cad%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191102171850805.png" alt="image-20191102171850805"></p>
-<h2 id="MongoDB-索引"><a href="#MongoDB-索引" class="headerlink" title="MongoDB 索引"></a>MongoDB 索引</h2><h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><p>在 MongoDB 中会自动为文档中的_Id(文档的主键)键创建索引，与关系型数据的主键索引类似。 </p>
+<h3 id="5-正则查询"><a href="#5-正则查询" class="headerlink" title="5. 正则查询"></a>5. 正则查询</h3><h2 id="MongoDB-索引"><a href="#MongoDB-索引" class="headerlink" title="MongoDB 索引"></a>MongoDB 索引</h2><h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><p>在 MongoDB 中会自动为文档中的_Id(文档的主键)键创建索引，与关系型数据的主键索引类似。 </p>
 <p>我们可以使用 createIndex()函数来为其他的键创建索引。在创建索引时需要指定排序规则。1按照升序规则创建索引，-1 按照降序规则创建索引。 </p>
 <p>语法格式：db.COLLECTION_NAME.createIndex({创建索引的键:排序规则,……},{创建索 引的参数(可选参数)}) </p>
 <table>

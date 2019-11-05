@@ -243,8 +243,20 @@ public class MongDBAuthPoolUtil {
 </ul>
 </li>
 <li><a href="#ji-he-cao-zuo">集合操作</a><ul>
-<li><a href="#chuang-jian-ji-he">创建集合</a></li>
+<li><a href="#chuang-jian-ji-he">创建集合</a><ul>
 <li><a href="#shi-yong-mo-ren-ji-he">使用默认集合</a></li>
+<li><a href="#chuang-jian-dai-can-shu-de-ji-he">创建带参数的集合</a></li>
+<li><a href="#chuang-jian-bu-dai-can-shu-de-ji-he">创建不带参数的集合</a></li>
+</ul>
+</li>
+<li><a href="#cha-kan-ji-he">查看集合</a></li>
+<li><a href="#shan-chu-ji-he">删除集合</a></li>
+</ul>
+</li>
+<li><a href="#mongodb-de-wen-dang-cao-zuo">MongoDB 的文档操作</a><ul>
+<li><a href="#cha-ru-wen-dang">插入文档</a><ul>
+<li><a href="#1-insert-han-shu">1. insert 函数</a></li>
+<li><a href="#2-save-han-shu">2. save 函数</a></li>
 </ul>
 </li>
 <li><a href="#cha-xun-wen-dang">查询文档</a><ul>
@@ -252,7 +264,9 @@ public class MongDBAuthPoolUtil {
 <li><a href="#2-findone-han-shu">2. findOne()函数</a></li>
 <li><a href="#3-mo-hu-cha-xun">3. 模糊查询</a></li>
 <li><a href="#4-tiao-jian-cha-xun">4. 条件查询</a><ul>
-<li><a href="#gt">$gt</a></li>
+<li><a href="#gt-da-yu-cao-zuo-fu">$gt (&gt;) 大于操作符</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#5-zheng-ze-cha-xun">5. 正则查询</a></li>
@@ -342,7 +356,10 @@ roles: [
 <p>如果开启了用户认证，则需要先登录方可查看到结果，否则不显示任何信息。如果使用的是具备数据库管理员角色的用户，那么则可以看到 MongoDB 中的所有数据库，如果使用 的普通用户登录的那么只能查询到该用户所拥有的数据库。 </p>
 <h3><span id="shan-chu-shu-ju-ku">删除数据库</span><a href="#shan-chu-shu-ju-ku" class="header-anchor"> </a></h3><p>在 MongoDB 中使用 db.dropDatabase()函数来删除数据库。在删除数据库之前，需要使用具备dbAdminAnyDatabase 角色的管理员用户登录，然后切换到需要删除的数据库，执行 db.dropDatabase()函数即可。删除成功后会返回一个{ “ok” : 1 }的 JSON 字符串。</p>
 <h2><span id="ji-he-cao-zuo">集合操作</span><a href="#ji-he-cao-zuo" class="header-anchor"> </a></h2><p>MongoDB 中的集合是一组文档的集，相当于关系型数据库中的表。 </p>
-<h3><span id="chuang-jian-ji-he">创建集合</span><a href="#chuang-jian-ji-he" class="header-anchor"> </a></h3><p>MongoDB 使用 db.createCollection()函数来创建集合。 语法格式：db.createCollection(name, options)。name: 要创建的集合名称。 options: 可选参数, 指定有关内存大小及索引的选项。 </p>
+<h3><span id="chuang-jian-ji-he">创建集合</span><a href="#chuang-jian-ji-he" class="header-anchor"> </a></h3><p>MongoDB 使用 db.createCollection()函数来创建集合。 </p>
+<p>语法格式：db.createCollection(name, options)。</p>
+<p>name: 要创建的集合名称。 </p>
+<p>options: 可选参数, 指定有关内存大小及索引的选项。 </p>
 <p>options 可以是如下参数。 </p>
 <table>
 <thead>
@@ -374,17 +391,24 @@ roles: [
 </tr>
 </tbody></table>
 <p>在插入文档时，MongoDB 首先检查固定集合的 size 字段，然后检查 max 字段。 </p>
-<h3><span id="shi-yong-mo-ren-ji-he">使用默认集合</span><a href="#shi-yong-mo-ren-ji-he" class="header-anchor"> </a></h3><h2><span id="cha-xun-wen-dang">查询文档</span><a href="#cha-xun-wen-dang" class="header-anchor"> </a></h2><h3><span id="1-find-han-shu">1. find()函数</span><a href="#1-find-han-shu" class="header-anchor"> </a></h3><p>在 MongoDB 中可以使用 find()函数查询文档。 </p>
+<h4><span id="shi-yong-mo-ren-ji-he">使用默认集合</span><a href="#shi-yong-mo-ren-ji-he" class="header-anchor"> </a></h4><p>在 MongoDB 中，我们也可以不用创建集合，当我们插入一些数据时，会自动创建集合， 并且会使用数据库的名字作为集合的名称。 </p>
+<h4><span id="chuang-jian-dai-can-shu-de-ji-he">创建带参数的集合</span><a href="#chuang-jian-dai-can-shu-de-ji-he" class="header-anchor"> </a></h4><p>在 develop 数据库中创建一个名为 dev2 的固定集合，整个集合空间大小为 2000000kb， 文档最大个数为 1000。 </p>
+<h4><span id="chuang-jian-bu-dai-can-shu-de-ji-he">创建不带参数的集合</span><a href="#chuang-jian-bu-dai-can-shu-de-ji-he" class="header-anchor"> </a></h4><p>我们也可以根据自己的情况创建集合。在 develop 数据库中创建一个名为 dev 的集合， 该集合创建时不指定任何参数。如果开启认证，则需要使用具有数据库管理员权限的用户来 创建集合。 </p>
+<h3><span id="cha-kan-ji-he">查看集合</span><a href="#cha-kan-ji-he" class="header-anchor"> </a></h3><p>如果要查看已有集合，可以使用 show collections 或 show tables 命令。 </p>
+<h3><span id="shan-chu-ji-he">删除集合</span><a href="#shan-chu-ji-he" class="header-anchor"> </a></h3><p>如果我们要删除集合，需要先切换到需要删除集合所在的数据库，使用 drop()函数删除集合即可。 </p>
+<p>删除集合的语法格式为:db.集合名称.drop()。 </p>
+<h2><span id="mongodb-de-wen-dang-cao-zuo">MongoDB 的文档操作</span><a href="#mongodb-de-wen-dang-cao-zuo" class="header-anchor"> </a></h2><h3><span id="cha-ru-wen-dang">插入文档</span><a href="#cha-ru-wen-dang" class="header-anchor"> </a></h3><h4><span id="1-insert-han-shu">1.  insert 函数</span><a href="#1-insert-han-shu" class="header-anchor"> </a></h4><p>语法格式为：db.COLLECTION_NAME.insert(document)。 </p>
+<h4><span id="2-save-han-shu">2. save 函数</span><a href="#2-save-han-shu" class="header-anchor"> </a></h4><p>db.COLLECTION_NAME.save(document)。 </p>
+<h3><span id="cha-xun-wen-dang">查询文档</span><a href="#cha-xun-wen-dang" class="header-anchor"> </a></h3><h4><span id="1-find-han-shu">1. find()函数</span><a href="#1-find-han-shu" class="header-anchor"> </a></h4><p>在 MongoDB 中可以使用 find()函数查询文档。 </p>
 <p>语法格式为：<code>find({查询条件(可选)},{指定投影的键(可选)})</code></p>
 <p>如果未给定参数则表示查询所有数据。 </p>
 <p>pretty()函数可以使用格式化的方式来显示所有文档。 </p>
-<h3><span id="2-findone-han-shu">2. findOne()函数</span><a href="#2-findone-han-shu" class="header-anchor"> </a></h3><p>findOne()函数只返回满足条件的第一条数据。如果未做投影操作该方法则自带格式化功能。 </p>
+<h4><span id="2-findone-han-shu">2. findOne()函数</span><a href="#2-findone-han-shu" class="header-anchor"> </a></h4><p>findOne()函数只返回满足条件的第一条数据。如果未做投影操作该方法则自带格式化功能。 </p>
 <p>语法格式：findOne({查询条件(可选)},{投影操作(可选)}) </p>
-<h3><span id="3-mo-hu-cha-xun">3.  模糊查询</span><a href="#3-mo-hu-cha-xun" class="header-anchor"> </a></h3><p>在 MongoDB 中可以通过//与^$实现模糊查询，注意使用模糊查询时查询条件不能放到双引号或单引号中。 </p>
-<h3><span id="4-tiao-jian-cha-xun">4. 条件查询</span><a href="#4-tiao-jian-cha-xun" class="header-anchor"> </a></h3><p>条件操作符用于比较两个表达式并从 mongoDB 集合中获取数据。 </p>
+<h4><span id="3-mo-hu-cha-xun">3.  模糊查询</span><a href="#3-mo-hu-cha-xun" class="header-anchor"> </a></h4><p>在 MongoDB 中可以通过//与^$实现模糊查询，注意使用模糊查询时查询条件不能放到双引号或单引号中。 </p>
+<h4><span id="4-tiao-jian-cha-xun">4. 条件查询</span><a href="#4-tiao-jian-cha-xun" class="header-anchor"> </a></h4><p>条件操作符用于比较两个表达式并从 mongoDB 集合中获取数据。 </p>
 <p>语法格式：find({键:{操作符:条件}})或者 findOne({键:{操作符:条件}}) </p>
-<h4><span id="gt">$gt</span><a href="#gt" class="header-anchor"> </a></h4><p>*<em>(&gt;) 大于操作符 *</em></p>
-<p>我们可以使用$gt 操作做大于的条件判断。该操作符可以数字或日期进行判断。 </p>
+<h5><span id="gt-gt-da-yu-cao-zuo-fu">$gt  (&gt;) 大于操作符</span><a href="#gt-gt-da-yu-cao-zuo-fu" class="header-anchor"> </a></h5><p>我们可以使用$gt 操作做大于的条件判断。该操作符可以数字或日期进行判断。 </p>
 <p>查询 size 大于 300 的文档 </p>
 <p><img src="C:%5CUsers%5Cad%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191102171850805.png" alt="image-20191102171850805"></p>
 <h3><span id="5-zheng-ze-cha-xun">5. 正则查询</span><a href="#5-zheng-ze-cha-xun" class="header-anchor"> </a></h3><p>MongoDB 中查询条件也可以使用正则表达式作为匹配约束。</p>

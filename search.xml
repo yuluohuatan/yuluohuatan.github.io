@@ -16,12 +16,21 @@
 <li><a href="#5-chuang-jian-mongodb-de-ren-zheng-chi-lian">5. 创建 MongoDB 的认证池连</a></li>
 </ul>
 </li>
+<li><a href="#cao-zuo-ji-he">操作集合</a><ul>
+<li><a href="#1-chuang-jian-ji-he">1. 创建集合</a></li>
+<li><a href="#2-huo-qu-ji-he">2. 获取集合</a></li>
+<li><a href="#3-shan-chu-ji-he">3. 删除集合</a></li>
+</ul>
+</li>
+<li><a href="#cao-zuo-wen-dang">操作文档</a><ul>
+<li><a href="#1-tian-jia-wen-dang">1. 添加文档</a></li>
+</ul>
+</li>
 </ul>
 <!-- tocstop -->
 
 </div>
 
-<p><img src="https://qiuyin-1251709977.cos.ap-guangzhou.myqcloud.com/clipboard_20191105022330.png" alt="12"></p>
 <h2><span id="lian-jie-mongodb-shu-ju-ku">连接 MongoDB 数据库</span><a href="#lian-jie-mongodb-shu-ju-ku" class="header-anchor"> </a></h2><h3><span id="1-chuang-jian-gong-cheng">1. 创建工程</span><a href="#1-chuang-jian-gong-cheng" class="header-anchor"> </a></h3><p>在POM文件中添加MongoDB驱动包坐标</p>
 <pre><code class="xml">    &lt;dependencies&gt;
         &lt;!--添加 MongoDB 驱动坐标 --&gt;
@@ -214,6 +223,80 @@ public class MongDBAuthPoolUtil {
 
 }
 </code></pre>
+<h2><span id="cao-zuo-ji-he">操作集合</span><a href="#cao-zuo-ji-he" class="header-anchor"> </a></h2><h3><span id="1-chuang-jian-ji-he">1. 创建集合</span><a href="#1-chuang-jian-ji-he" class="header-anchor"> </a></h3><pre><code class="java">// 创建集合 
+public static void createCollection(String dbName,String collName){   
+    MongoDatabase database = getDatabase(dbName); 
+    database.createCollection(collName); 
+}</code></pre>
+<h3><span id="2-huo-qu-ji-he">2. 获取集合</span><a href="#2-huo-qu-ji-he" class="header-anchor"> </a></h3><pre><code class="java">    /**
+     * 获取MongoDB集合
+     *
+     * @param dbName         MongoDB数据库名
+     * @param collectionName MongoDB集合名
+     * @return MongoDB集合对象
+     */
+    public static MongoCollection getCollection(String dbName, String collectionName) {
+        MongoDatabase database = getDatabase(dbName);
+        return database.getCollection(collectionName);
+    }</code></pre>
+<h3><span id="3-shan-chu-ji-he">3. 删除集合</span><a href="#3-shan-chu-ji-he" class="header-anchor"> </a></h3><pre><code class="java">    /**
+     * 删除集合
+     * @param coll 集合对象
+     */
+    public static void dropCollection(MongoCollection coll){
+        coll.drop();
+    }</code></pre>
+<h2><span id="cao-zuo-wen-dang">操作文档</span><a href="#cao-zuo-wen-dang" class="header-anchor"> </a></h2><h3><span id="1-tian-jia-wen-dang">1.  添加文档</span><a href="#1-tian-jia-wen-dang" class="header-anchor"> </a></h3><pre><code class="java">package com.trf.mongodb;
+
+import com.mongodb.client.MongoCollection;
+import org.bson.Document;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * 添加文档
+ *
+ * @author ad
+ * @date 2019-11-05 10:58
+ */
+public class InsertDocument {
+    public static void main(String[] args) {
+        InsertDocument insertDocument = new InsertDocument();
+        //insertDocument.insertSingleDocument();
+        insertDocument.insertManyDocument();
+    }
+
+    /**
+     * 插入单个文档
+     */
+    public void insertSingleDocument() {
+        //获取集合
+        MongoCollection collection = MongoDBAuthPoolUtil.getCollection(&quot;dev&quot;, &quot;devtest&quot;);
+        Document document = new Document();
+        document.append(&quot;username&quot;, &quot;zq&quot;).append(&quot;userage&quot;, 26).append(&quot;userdesc&quot;, &quot;rua&quot;).append(&quot;userlike&quot;, Arrays.asList(&quot;qweqw&quot;, &quot;eqw&quot;, &quot;opioi&quot;));
+        collection.insertOne(document);
+    }
+
+    /**
+     * 插入多个文档
+     */
+    public void insertManyDocument() {
+        MongoCollection collection = MongoDBAuthPoolUtil.getCollection(&quot;dev&quot;, &quot;devtest&quot;);
+        List&lt;Document&gt; list = new ArrayList&lt;&gt;();
+        for (int i = 0; i &lt; 5; i++) {
+            Document docu = new Document();
+            docu.append(&quot;username&quot;, &quot;zhangsan&quot; + i);
+            docu.append(&quot;userage&quot;, 20 + i);
+            docu.append(&quot;userdesc&quot;, &quot;OK&quot; + i);
+            docu.append(&quot;userlike&quot;, Arrays.asList(new String[]{&quot;Music&quot;, &quot;Sport&quot;}));
+            list.add(docu);
+        }
+        collection.insertMany(list);
+    }
+}
+</code></pre>
 ]]></content>
       <categories>
         <category>数据库</category>
@@ -258,6 +341,7 @@ public class MongDBAuthPoolUtil {
 <li><a href="#cha-ru-wen-dang">插入文档</a><ul>
 <li><a href="#1-insert-han-shu">1. insert 函数</a></li>
 <li><a href="#2-save-han-shu">2. save 函数</a></li>
+<li><a href="#3-insertone-han-shu">3. insertOne 函数</a></li>
 </ul>
 </li>
 <li><a href="#cha-xun-wen-dang">查询文档</a><ul>
@@ -400,7 +484,7 @@ roles: [
 <p>删除集合的语法格式为:db.集合名称.drop()。 </p>
 <h2><span id="mongodb-de-wen-dang-cao-zuo">MongoDB 的文档操作</span><a href="#mongodb-de-wen-dang-cao-zuo" class="header-anchor"> </a></h2><h3><span id="cha-ru-wen-dang">插入文档</span><a href="#cha-ru-wen-dang" class="header-anchor"> </a></h3><h4><span id="1-insert-han-shu">1.  insert 函数</span><a href="#1-insert-han-shu" class="header-anchor"> </a></h4><p>语法格式为：db.COLLECTION_NAME.insert(document)。 </p>
 <h4><span id="2-save-han-shu">2. save 函数</span><a href="#2-save-han-shu" class="header-anchor"> </a></h4><p>db.COLLECTION_NAME.save(document)。 </p>
-<h3><span id="cha-xun-wen-dang">查询文档</span><a href="#cha-xun-wen-dang" class="header-anchor"> </a></h3><h4><span id="1-find-han-shu">1. find()函数</span><a href="#1-find-han-shu" class="header-anchor"> </a></h4><p>在 MongoDB 中可以使用 find()函数查询文档。 </p>
+<h4><span id="3-insertone-han-shu">3. insertOne 函数</span><a href="#3-insertone-han-shu" class="header-anchor"> </a></h4><h3><span id="cha-xun-wen-dang">查询文档</span><a href="#cha-xun-wen-dang" class="header-anchor"> </a></h3><h4><span id="1-find-han-shu">1. find()函数</span><a href="#1-find-han-shu" class="header-anchor"> </a></h4><p>在 MongoDB 中可以使用 find()函数查询文档。 </p>
 <p>语法格式为：<code>find({查询条件(可选)},{指定投影的键(可选)})</code></p>
 <p>如果未给定参数则表示查询所有数据。 </p>
 <p>pretty()函数可以使用格式化的方式来显示所有文档。 </p>
@@ -724,7 +808,7 @@ roles: [
 <h3><span id="cha-kan-suo-yin">查看索引</span><a href="#cha-kan-suo-yin" class="header-anchor"> </a></h3><h4><span id="cha-kan-ji-he-suo-yin">查看集合索引</span><a href="#cha-kan-ji-he-suo-yin" class="header-anchor"> </a></h4><p>我们可以通过 getIndexes()或者 getIndexSpecs()函数查看集合中的所有索引信息。 </p>
 <p>语法格式：db.COLLECTION_NAME.getIndexse()</p>
 <p>语法格式：db.COLLECTION_NAME.getIndexSpecs() </p>
-<p><img src="C:%5CUsers%5Cad%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191102174313637.png" alt="image-20191102174313637"></p>
+<p><img src="https://qiuyin-1251709977.cos.ap-guangzhou.myqcloud.com/blog_img/image-20191102174313637.png" alt></p>
 <h4><span id="cha-kan-suo-yin-jian">查看索引键</span><a href="#cha-kan-suo-yin-jian" class="header-anchor"> </a></h4><p>我们可以通过使用 getIndexKeys()函数查看集合的索引键。 </p>
 <p>语法格式：db.COLLECTION_NAME.getIndexKeys();</p>
 <h4><span id="cha-kan-suo-yin-da-xiao">查看索引大小</span><a href="#cha-kan-suo-yin-da-xiao" class="header-anchor"> </a></h4><p>可以通过 totalIndexSize()函数来查看当前集合中索引的大小，单位为字节</p>

@@ -24,6 +24,7 @@
 </li>
 <li><a href="#cao-zuo-wen-dang">操作文档</a><ul>
 <li><a href="#1-tian-jia-wen-dang">1. 添加文档</a></li>
+<li><a href="#2-geng-xin-wen-dang">2. 更新文档</a></li>
 </ul>
 </li>
 </ul>
@@ -294,6 +295,62 @@ public class InsertDocument {
             list.add(docu);
         }
         collection.insertMany(list);
+    }
+}
+</code></pre>
+<h3><span id="2-geng-xin-wen-dang">2. 更新文档</span><a href="#2-geng-xin-wen-dang" class="header-anchor"> </a></h3><pre><code class="java">package com.trf.mongodb;
+
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
+import org.bson.Document;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * 更新文档
+ *
+ * @author ad
+ * @date 2019-11-05 10:58
+ */
+public class UpdateDocument {
+    public static void main(String[] args) {
+        UpdateDocument document = new UpdateDocument();
+        //insertDocument.insertSingleDocument();
+        document.updateSingleDocument();
+    }
+
+    /**
+     * 更新单个文档
+     */
+    public void updateSingleDocument() {
+        //获取集合
+        MongoCollection collection = MongoDBAuthPoolUtil.getCollection(&quot;dev&quot;, &quot;devtest&quot;);
+        Document document = new Document();
+        document.append(&quot;username&quot;, &quot;zq&quot;).append(&quot;userage&quot;, 26).append(&quot;userdesc&quot;, &quot;rua&quot;).append(&quot;userlike&quot;, Arrays.asList(&quot;qweqw&quot;, &quot;eqw&quot;, &quot;opioi&quot;));
+        collection.updateOne(Filters.eq(&quot;username&quot;, &quot;zq&quot;),
+                new Document(&quot;$set&quot;, new Document(&quot;userage&quot;, 56)));
+    }
+
+    /**
+     * 更新多个文档
+     */
+    public void updateManyDocument() {
+        MongoCollection collection = MongoDBAuthPoolUtil.getCollection(&quot;dev&quot;, &quot;devtest&quot;);
+        collection.updateMany(Filters.ne(&quot;username&quot;,null),
+                new Document(&quot;$set&quot;,
+                        new Document(&quot;userdesc&quot;,&quot;OK&quot;).append(&quot;userage&quot;,20)));
+    }
+
+    /**
+     * 更新数组
+     */
+    public void updateDocumentArray() {
+        MongoCollection collection = MongoDBAuthPoolUtil.getCollection(&quot;dev&quot;, &quot;devtest&quot;);
+        collection.updateMany(Filters.ne(&quot;username&quot;, null),
+                new Document(&quot;$push&quot;,
+                        new Document(&quot;userlike&quot;, Arrays.asList(&quot;123&quot;, &quot;321&quot;, &quot;&lt;&gt;&lt;?&quot;))));
     }
 }
 </code></pre>

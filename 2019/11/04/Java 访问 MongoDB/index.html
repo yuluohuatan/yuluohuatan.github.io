@@ -183,7 +183,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-04 21:09:47'>2019-11-04 17:12</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-05 08:33:25'>2019-11-04 17:12</time>
         
     </div>
     <div class="article-meta">
@@ -205,7 +205,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-text">Java访问MongoDB</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">连接 MongoDB 数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">1. 创建工程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">2.创建 MongoDB 连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">3. 创建 MongoDB 的认证连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">4. 创建 MongoDB 的池连</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">5. 创建 MongoDB 的认证池连</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-text">Java访问MongoDB </span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">连接 MongoDB 数据库 </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">1. 创建工程 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">2.创建 MongoDB 连接 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">3. 创建 MongoDB 的认证连接 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">4. 创建 MongoDB 的池连 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">5. 创建 MongoDB 的认证池连 </span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -221,8 +221,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1><span id="java访问mongodb">Java访问MongoDB</span></h1><p><div class='inner-toc'><h2>目录</h2><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-text">Java访问MongoDB</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">连接 MongoDB 数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">1. 创建工程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">2.创建 MongoDB 连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">3. 创建 MongoDB 的认证连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">4. 创建 MongoDB 的池连</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">5. 创建 MongoDB 的认证池连</span></a></li></ol></li></ol></li></ol></div></p>
-<h2><span id="连接-mongodb-数据库">连接 MongoDB 数据库</span></h2><h3><span id="1-创建工程">1. 创建工程</span></h3><p>在POM文件中添加MongoDB驱动包坐标</p>
+        <h1><span id="java-fang-wen-mongodb">Java访问MongoDB</span><a href="#java-fang-wen-mongodb" class="header-anchor"> </a></h1><div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#lian-jie-mongodb-shu-ju-ku">连接 MongoDB 数据库</a><ul>
+<li><a href="#1-chuang-jian-gong-cheng">1. 创建工程</a></li>
+<li><a href="#2-chuang-jian-mongodb-lian-jie">2.创建 MongoDB 连接</a></li>
+<li><a href="#3-chuang-jian-mongodb-de-ren-zheng-lian-jie">3. 创建 MongoDB 的认证连接</a></li>
+<li><a href="#4-chuang-jian-mongodb-de-chi-lian">4. 创建 MongoDB 的池连</a></li>
+<li><a href="#5-chuang-jian-mongodb-de-ren-zheng-chi-lian">5. 创建 MongoDB 的认证池连</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h2><span id="lian-jie-mongodb-shu-ju-ku">连接 MongoDB 数据库</span><a href="#lian-jie-mongodb-shu-ju-ku" class="header-anchor"> </a></h2><h3><span id="1-chuang-jian-gong-cheng">1. 创建工程</span><a href="#1-chuang-jian-gong-cheng" class="header-anchor"> </a></h3><p>在POM文件中添加MongoDB驱动包坐标</p>
 <pre><code class="xml">    &lt;dependencies&gt;
         &lt;!--添加 MongoDB 驱动坐标 --&gt;
         &lt;!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java -driver --&gt;
@@ -232,7 +249,7 @@
             &lt;version&gt;3.8.2&lt;/version&gt;
         &lt;/dependency&gt;
     &lt;/dependencies&gt;</code></pre>
-<h3><span id="2创建-mongodb-连接">2.创建 MongoDB 连接</span></h3><p>封装 MongoDBUtil </p>
+<h3><span id="2-chuang-jian-mongodb-lian-jie">2.创建 MongoDB 连接</span><a href="#2-chuang-jian-mongodb-lian-jie" class="header-anchor"> </a></h3><p>封装 MongoDBUtil </p>
 <pre><code class="java">package com.trf.mongodb;
 
 import com.mongodb.MongoClient;
@@ -267,7 +284,7 @@ public class MongDBUtil {
     }
 
 }</code></pre>
-<h3><span id="3-创建-mongodb-的认证连接">3. 创建 MongoDB 的认证连接</span></h3><p>封装 MongoDBAuthUtil </p>
+<h3><span id="3-chuang-jian-mongodb-de-ren-zheng-lian-jie">3. 创建 MongoDB 的认证连接</span><a href="#3-chuang-jian-mongodb-de-ren-zheng-lian-jie" class="header-anchor"> </a></h3><p>封装 MongoDBAuthUtil </p>
 <pre><code class="java">package com.trf.mongodb;
 
 import com.mongodb.MongoClient;
@@ -315,7 +332,7 @@ public class MongoDBAuthUtil {
     }
 }
 </code></pre>
-<h3><span id="4-创建-mongodb-的池连">4. 创建 MongoDB 的池连</span></h3><p>封装 MongoDBPoolUtil </p>
+<h3><span id="4-chuang-jian-mongodb-de-chi-lian">4. 创建 MongoDB 的池连</span><a href="#4-chuang-jian-mongodb-de-chi-lian" class="header-anchor"> </a></h3><p>封装 MongoDBPoolUtil </p>
 <pre><code class="java">package com.trf.mongodb;
 
 import com.mongodb.MongoClient;
@@ -362,7 +379,7 @@ public class MongDBPoolUtil {
         return database.getCollection(collectionName);
     }
 }</code></pre>
-<h3><span id="5-创建-mongodb-的认证池连">5. 创建 MongoDB 的认证池连</span></h3><p>封装 MongoDBAuthPoolUtil </p>
+<h3><span id="5-chuang-jian-mongodb-de-ren-zheng-chi-lian">5. 创建 MongoDB 的认证池连</span><a href="#5-chuang-jian-mongodb-de-ren-zheng-chi-lian" class="header-anchor"> </a></h3><p>封装 MongoDBAuthPoolUtil </p>
 <pre><code class="java">package com.trf.mongodb;
 
 import com.mongodb.MongoClient;
